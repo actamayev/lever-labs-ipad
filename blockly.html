@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockly Motor Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #blocklyDiv {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="blocklyDiv"></div>
+    
+    <script src="blockly.min.js"></script>
+    <script>
+        // ===== C++ GENERATOR SETUP =====
+        Blockly.Cpp = new Blockly.Generator('CPP');
+        Blockly.Cpp.INDENT = '    ';
+
+        // Required: Define the order of operations (not used for simple blocks, but required)
+        Blockly.Cpp.ORDER_ATOMIC = 0;
+        Blockly.Cpp.ORDER_NONE = 99;
+
+        // ===== MOTOR STOP BLOCK =====
+        Blockly.Blocks['motor_stop'] = {
+            init: function() {
+                this.appendDummyInput()
+                    .appendField("Stop");
+                this.setPreviousStatement(true, null);
+                this.setNextStatement(true, null);
+                this.setColour(120);
+                this.setTooltip("Stop all motors");
+            }
+        };
+
+        // IMPORTANT: Use forBlock instead of array notation
+        Blockly.Cpp.forBlock['motor_stop'] = function(block, generator) {
+            return 'motors.stop();\n';
+        };
+
+        // ===== TOOLBOX =====
+        const toolbox = {
+            kind: "categoryToolbox",
+            contents: [
+                {
+                    kind: "category",
+                    name: "Motors",
+                    colour: "120",
+                    contents: [
+                        { kind: "block", type: "motor_stop" }
+                    ]
+                }
+            ]
+        };
+
+        // ===== WORKSPACE INITIALIZATION =====
+        const workspace = Blockly.inject('blocklyDiv', {
+            toolbox: toolbox,
+            grid: {
+                spacing: 20,
+                length: 3,
+                colour: '#ccc',
+                snap: true
+            },
+            zoom: {
+                controls: true,
+                wheel: true,
+                startScale: 1.0,
+                maxScale: 3,
+                minScale: 0.3,
+                scaleSpeed: 1.2
+            },
+            trashcan: true
+        });
+
+        // ===== SWIFT BRIDGE FUNCTION =====
+        function generateCode() {
+            const code = Blockly.Cpp.workspaceToCode(workspace);
+            console.log("Generated C++ code:", code);
+            
+            // Send to Swift if available
+            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.codeGenerated) {
+                window.webkit.messageHandlers.codeGenerated.postMessage(code);
+            }
+            
+            return code;
+        }
+
+        console.log("Blockly initialized with motor stop block!");
+    </script>
+</body>
+</html>
