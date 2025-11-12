@@ -5,9 +5,9 @@ const toolbox = {
         {
             kind: "category",
             name: "Motors",
-            colour: "120",
+            colour: COLORS.MOTORS, // <- Using constant
             contents: [
-                { kind: "block", type: "motor_stop" }
+                { kind: "block", type: MOTOR_BLOCK_TYPES.STOP } // <- Using constant
             ]
         }
     ]

@@ -1,42 +1,51 @@
-// C++ Generator Setup
+/**
+ * C++ Code Generator for Blockly
+ * Creates the Blockly.Cpp generator and provides global access via getCppGenerator()
+ */
+
+// Create the C++ generator
 Blockly.Cpp = new Blockly.Generator('CPP');
+
+// Set indentation to 4 spaces
 Blockly.Cpp.INDENT = '    ';
 
-// Define operator precedence
-Blockly.Cpp.ORDER_ATOMIC = 0;
-Blockly.Cpp.ORDER_MEMBER = 1;
-Blockly.Cpp.ORDER_FUNCTION_CALL = 2;
-Blockly.Cpp.ORDER_INCREMENT = 3;
-Blockly.Cpp.ORDER_DECREMENT = 4;
-Blockly.Cpp.ORDER_LOGICAL_NOT = 5;
-Blockly.Cpp.ORDER_BITWISE_NOT = 6;
-Blockly.Cpp.ORDER_UNARY_PLUS = 7;
-Blockly.Cpp.ORDER_UNARY_MINUS = 8;
-Blockly.Cpp.ORDER_MULTIPLICATION = 9;
-Blockly.Cpp.ORDER_ADDITION = 10;
-Blockly.Cpp.ORDER_BITWISE_SHIFT = 11;
-Blockly.Cpp.ORDER_RELATIONAL = 12;
-Blockly.Cpp.ORDER_EQUALITY = 13;
-Blockly.Cpp.ORDER_BITWISE_AND = 14;
-Blockly.Cpp.ORDER_BITWISE_XOR = 15;
-Blockly.Cpp.ORDER_BITWISE_OR = 16;
-Blockly.Cpp.ORDER_LOGICAL_AND = 17;
-Blockly.Cpp.ORDER_LOGICAL_OR = 18;
-Blockly.Cpp.ORDER_CONDITIONAL = 19;
-Blockly.Cpp.ORDER_ASSIGNMENT = 20;
-Blockly.Cpp.ORDER_COMMA = 21;
-Blockly.Cpp.ORDER_NONE = 99;
-
-// Handle block sequences
-Blockly.Cpp.scrub_ = function(block, code, thisOnly) {
-    const nextBlock = block.nextConnection && block.nextConnection.targetBlock();
-    if (nextBlock && !thisOnly) {
-        return code + Blockly.Cpp.blockToCode(nextBlock);
+/**
+ * The scrub_ function handles code generation for sequences of blocks.
+ * It takes the generated code from a single block and optionally adds
+ * code from the next block in the sequence.
+ *
+ * This is what allows blocks to stack vertically and execute in order.
+ *
+ * @param {Blockly.Block} block - The current block being processed
+ * @param {string} code - The generated code for this block
+ * @param {boolean} opt_thisOnly - If true, only return this block's code
+ * @returns {string} The combined code for this block and subsequent blocks
+ */
+Blockly.Cpp.scrub_ = function(block, code, opt_thisOnly) {
+    let nextBlock = block.nextConnection && block.nextConnection.targetBlock();
+    
+    // If opt_thisOnly is true, or there's no next block, return just this code
+    if (opt_thisOnly || !nextBlock) {
+        return code;
     }
-    return code;
+    
+    // Generate code for the next block and append it
+    let nextCode = Blockly.Cpp.blockToCode(nextBlock);
+    
+    // Handle both string and [string, number] returns
+    if (Array.isArray(nextCode)) {
+        nextCode = nextCode[0];
+    }
+    
+    return code + nextCode;
 };
 
-// Initialize forBlock object
-Blockly.Cpp.forBlock = {};
-
-console.log('C++ Generator initialized');
+/**
+ * Global accessor for the C++ generator.
+ * Provides singleton-style access matching the TypeScript pattern.
+ *
+ * @returns {Blockly.Generator} The C++ code generator
+ */
+window.getCppGenerator = function() {
+    return Blockly.Cpp;
+};

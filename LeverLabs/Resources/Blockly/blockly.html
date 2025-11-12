@@ -1,18 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blockly</title>
+    <title>Blockly Workspace</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="blocklyDiv"></div>
     
-    <!-- Load in order: Blockly → Generator → Blocks → Toolbox → Workspace -->
+    <!-- Load scripts in order -->
+    <!-- 1. Blockly library -->
     <script src="blockly.min.js"></script>
+    
+    <!-- 2. Foundation files (order matters!) -->
+    <script src="order.js"></script>
+    <script src="constants.js"></script>
     <script src="generator.js"></script>
+    <script src="helpers.js"></script>
+    
+    <!-- 3. Block definitions (order doesn't matter) -->
     <script src="blocks.js"></script>
+    
+    <!-- 4. Toolbox and workspace initialization -->
     <script src="toolbox.js"></script>
     <script src="workspace.js"></script>
 </body>
