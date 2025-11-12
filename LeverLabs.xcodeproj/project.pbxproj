@@ -6,14 +6,7 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		6FAF87262EC3D550002C7222 /* blockly.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 6FAF87242EC3D550002C7222 /* blockly.min.js */; };
-		6FAF872A2EC3E0D7002C7222 /* blockly.html in Resources */ = {isa = PBXBuildFile; fileRef = 6FAF87292EC3E0D7002C7222 /* blockly.html */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		6FAF87242EC3D550002C7222 /* blockly.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = blockly.min.js; sourceTree = "<group>"; };
-		6FAF87292EC3E0D7002C7222 /* blockly.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = blockly.html; sourceTree = "<group>"; };
 		6FD4DBFF2EC3AEBC005D0361 /* LeverLabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeverLabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -39,10 +32,8 @@
 		6FD4DBF62EC3AEBC005D0361 = {
 			isa = PBXGroup;
 			children = (
-				6FAF87242EC3D550002C7222 /* blockly.min.js */,
 				6FD4DC012EC3AEBC005D0361 /* LeverLabs */,
 				6FD4DC002EC3AEBC005D0361 /* Products */,
-				6FAF87292EC3E0D7002C7222 /* blockly.html */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,8 +109,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FAF872A2EC3E0D7002C7222 /* blockly.html in Resources */,
-				6FAF87262EC3D550002C7222 /* blockly.min.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
