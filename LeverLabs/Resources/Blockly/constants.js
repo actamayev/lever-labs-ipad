@@ -1,6 +1,6 @@
 /**
  * Constants for Blockly block definitions
- * Includes block types, field names, colors, and enums
+ * Matches TypeScript types exactly from common-ts package
  */
 
 // ============================================================================
@@ -21,47 +21,47 @@ const COLORS = {
 // ============================================================================
 
 const START_BLOCK_TYPES = {
-    BUTTON_PRESS_START: 'start_button_press'
+    BUTTON_PRESS_START: 'button_press_start'
 };
 
 const VARIABLE_BLOCK_TYPES = {
     VARIABLE_DECLARE_FLOAT: 'variable_declare_float',
-    VARIABLE_DECLARE_INT: 'variable_declare_int',
-    VARIABLE_DECLARE_BOOL: 'variable_declare_bool',
-    VARIABLE_ASSIGN: 'variable_assign',
     VARIABLE_GET_FLOAT: 'variable_get_float',
     VARIABLE_GET_INT: 'variable_get_int',
-    VARIABLE_GET_BOOL: 'variable_get_bool'
+    VARIABLE_DECLARE_INT: 'variable_declare_int',
+    VARIABLE_GET_BOOL: 'variable_get_bool',
+    VARIABLE_DECLARE_BOOL: 'variable_declare_bool',
+    VARIABLE_ASSIGN: 'variable_assign'
 };
 
 const VARIABLE_FIELD_VALUES = {
-    VARIABLE_NAME: 'VARIABLE_NAME',
-    VARIABLE_VALUE: 'VARIABLE_VALUE'
+    VARIABLE_NAME: 'VAR_NAME',
+    VARIABLE_VALUE: 'VAR_VALUE'
 };
 
 const CONDITIONAL_BLOCK_TYPES = {
-    IF: 'logic_if',
-    IF_ELSE: 'logic_if_else',
-    IF_ELSEIF_ELSE: 'logic_if_elseif_else',
-    IF_2ELSEIF_ELSE: 'logic_if_2elseif_else'
+    IF: 'controls_if',
+    IF_ELSE: 'controls_if_else',
+    IF_ELSEIF_ELSE: 'controls_if_elseif',
+    IF_2ELSEIF_ELSE: 'controls_if_2elseif'
 };
 
 const CONDITIONAL_FIELD_VALUES = {
-    IF_CONDITION: 'IF_CONDITION',
-    IF_DO: 'IF_DO',
-    IF1_CONDITION: 'IF1_CONDITION',
-    IF1_DO: 'IF1_DO',
-    IF2_CONDITION: 'IF2_CONDITION',
-    IF2_DO: 'IF2_DO',
-    IF3_CONDITION: 'IF3_CONDITION',
-    IF3_DO: 'IF3_DO',
-    ELSE_DO: 'ELSE_DO'
+    IF_CONDITION: 'IF0',
+    IF_DO: 'DO0',
+    IF1_CONDITION: 'IF1',
+    IF1_DO: 'DO1',
+    IF2_CONDITION: 'IF2',
+    IF2_DO: 'DO2',
+    IF3_CONDITION: 'IF3',
+    IF3_DO: 'DO3',
+    ELSE_DO: 'ELSE'
 };
 
 const MATH_BLOCK_TYPES = {
-    COMPARE: 'math_compare',
-    OPERATION: 'math_operation',
-    NEGATE: 'math_negate',
+    COMPARE: 'logic_compare',
+    OPERATION: 'logic_operation',
+    NEGATE: 'logic_negate',
     NUMBER: 'math_number',
     ARITHMETIC: 'math_arithmetic'
 };
@@ -73,7 +73,7 @@ const MATH_FIELD_VALUES = {
     OPERATION_A: 'OPERATION_A',
     OPERATION_B: 'OPERATION_B',
     OPERATION_OP: 'OPERATION_OP',
-    NEGATE_BOOL: 'NEGATE_BOOL',
+    NEGATE_BOOL: 'BOOL',
     NUMBER_NUM: 'NUMBER_NUM',
     ARITHMETIC_A: 'ARITHMETIC_A',
     ARITHMETIC_B: 'ARITHMETIC_B',
@@ -81,13 +81,13 @@ const MATH_FIELD_VALUES = {
 };
 
 const LOOP_BLOCK_TYPES = {
-    REPEAT: 'loop_repeat',
-    WAIT: 'loop_wait',
-    FOREVER_LOOP: 'loop_forever'
+    REPEAT: 'for_loop',
+    WAIT: 'wait',
+    FOREVER_LOOP: 'forever_loop'
 };
 
 const LOOP_FIELD_VALUES = {
-    REPEAT_TIMES: 'REPEAT_TIMES',
+    REPEAT_TIMES: 'TIMES',
     REPEAT_DO: 'REPEAT_DO'
 };
 
@@ -105,26 +105,26 @@ const LOGIC_BLOCK_TYPES = {
 // ============================================================================
 
 const MOTOR_BLOCK_TYPES = {
-    DRIVE: 'motors_drive',
-    DRIVE_TIME: 'motors_drive_time',
-    DRIVE_DISTANCE: 'motors_drive_distance',
-    TURN: 'motors_turn',
-    STOP: 'motors_stop',
-    SPIN: 'motors_spin'
+    DRIVE: 'drive',
+    DRIVE_TIME: 'drive_time',
+    DRIVE_DISTANCE: 'drive_distance',
+    STOP: 'stop',
+    TURN: 'turn',
+    SPIN: 'spin'
 };
 
 const MOTOR_FIELD_VALUES = {
-    DIRECTION: 'DIRECTION',
-    DRIVING_PERCENTAGE: 'DRIVING_PERCENTAGE',
-    DRIVING_SECONDS: 'DRIVING_SECONDS',
-    DRIVING_DISTANCE: 'DRIVING_DISTANCE',
-    TURN_DIRECTION: 'TURN_DIRECTION',
-    TURN_DEGREES: 'TURN_DEGREES'
+    DIRECTION: 'direction',
+    DRIVING_PERCENTAGE: 'percentage',
+    DRIVING_SECONDS: 'seconds',
+    DRIVING_DISTANCE: 'distance',
+    TURN_DIRECTION: 'turn_direction',
+    TURN_DEGREES: 'turn_degrees'
 };
 
 const MOTOR_DIRECTIONS = {
-    FORWARD: 'FORWARD',
-    BACKWARD: 'BACKWARD'
+    FORWARD: 'forward',
+    BACKWARD: 'backward'
 };
 
 const TURN_DIRECTIONS = {
@@ -137,57 +137,66 @@ const TURN_DIRECTIONS = {
 // ============================================================================
 
 const SENSORS_BLOCK_TYPES = {
-    IMU_READ: 'sensors_imu_read',
-    SIDE_TOF_READ: 'sensors_side_tof_read',
-    CENTER_TOF_READ: 'sensors_center_tof_read',
-    COLOR_SENSOR_READ: 'sensors_color_sensor_read',
-    GET_FRONT_TOF_DISTANCE: 'sensors_get_front_tof_distance'
+    IMU_READ: 'imu_read',
+    SIDE_TOF_READ: 'side_tof_read',
+    CENTER_TOF_READ: 'center_tof_read',
+    COLOR_SENSOR_READ: 'color_sensor_read',
+    GET_FRONT_TOF_DISTANCE: 'get_front_distance_sensor_distance'
 };
 
 const SENSORS_FIELD_VALUES = {
-    IMU_READ: 'IMU_READ',
-    SIDE_TOF_READ: 'SIDE_TOF_READ',
-    COLOR_SENSOR_READ: 'COLOR_SENSOR_READ'
+    IMU_READ: 'imu_value',
+    SIDE_TOF_READ: 'side_tof_value',
+    CENTER_TOF_READ: 'center_tof_read',
+    COLOR_SENSOR_READ: 'color_sensor'
 };
 
+// Keys are display names shown in dropdown, values are C++ function calls
 const SENSOR_TYPES = {
     IMU: {
-        YAW: 'yaw',
-        PITCH: 'pitch',
-        ROLL: 'roll',
-        HEADING: 'heading',
-        ACCELERATION_X: 'acceleration_x',
-        ACCELERATION_Y: 'acceleration_y',
-        ACCELERATION_Z: 'acceleration_z'
+        'Yaw': 'getYaw()',
+        'Pitch': 'getPitch()',
+        'Roll': 'getRoll()',
+        'X Acceleration': 'getXAccel()',
+        'Y Acceleration': 'getYAccel()',
+        'Z Acceleration': 'getZAccel()',
+        'Acceleration Magnitude': 'getAccelMagnitude()',
+        'X Rotation Rate': 'getXRotationRate()',
+        'Y Rotation Rate': 'getYRotationRate()',
+        'Z Rotation Rate': 'getZRotationRate()',
+        'Magnetic Field X': 'getMagneticFieldX()',
+        'Magnetic Field Y': 'getMagneticFieldY()',
+        'Magnetic Field Z': 'getMagneticFieldZ()'
     },
     LEFTRIGHT: {
-        LEFT: 'LEFT',
-        RIGHT: 'RIGHT'
+        'LEFT': 'LEFT',
+        'RIGHT': 'RIGHT'
     },
     LED_COLORS: {
-        RED: 'RED',
-        GREEN: 'GREEN',
-        BLUE: 'BLUE',
-        PURPLE: 'PURPLE',
-        YELLOW: 'YELLOW',
-        WHITE: 'WHITE',
-        OFF: 'OFF'
+        'WHITE': 'WHITE',
+        'RED': 'RED',
+        'GREEN': 'GREEN',
+        'BLUE': 'BLUE',
+        'PURPLE': 'PURPLE',
+        'YELLOW': 'YELLOW',
+        'OFF': 'OFF'
     },
     COLOR_SENSOR_READ_COLORS: {
-        RED: 'RED',
-        GREEN: 'GREEN',
-        BLUE: 'BLUE',
-        WHITE: 'WHITE',
-        BLACK: 'BLACK'
+        'RED': 'RED',
+        'GREEN': 'GREEN',
+        'BLUE': 'BLUE',
+        'YELLOW': 'YELLOW',
+        'WHITE': 'WHITE',
+        'BLACK': 'BLACK'
     },
     TONE_NAMES: {
-        A: 'A',
-        B: 'B',
-        C: 'C',
-        D: 'D',
-        E: 'E',
-        F: 'F',
-        G: 'G'
+        'A': 'A',
+        'B': 'B',
+        'C': 'C',
+        'D': 'D',
+        'E': 'E',
+        'F': 'F',
+        'G': 'G'
     }
 };
 
@@ -196,11 +205,11 @@ const SENSOR_TYPES = {
 // ============================================================================
 
 const LED_BLOCK_TYPES = {
-    CONTROL_ALL_LEDS: 'led_control_all'
+    CONTROL_ALL_LEDS: 'control_all_leds'
 };
 
 const LED_FIELD_VALUES = {
-    LED_COLOR: 'LED_COLOR'
+    LED_COLOR: 'led_color'
 };
 
 // ============================================================================
@@ -208,7 +217,11 @@ const LED_FIELD_VALUES = {
 // ============================================================================
 
 const SPEAKER_BLOCK_TYPES = {
-    PLAY_TONE: 'speaker_play_tone'
+    PLAY_TONE: 'play_tone'
+};
+
+const SPEAKER_FIELD_VALUES = {
+    TONE_NAME: 'tone_name'
 };
 
 // ============================================================================
@@ -216,5 +229,5 @@ const SPEAKER_BLOCK_TYPES = {
 // ============================================================================
 
 const BUTTON_BLOCK_TYPES = {
-    RIGHT_BUTTON_PRESS: 'button_right_press'
+    RIGHT_BUTTON_PRESS: 'right_button_press'
 };

@@ -7,6 +7,7 @@
 // STOP BLOCK
 // ============================================================================
 
+// Register block with correct type: 'stop' (not 'motors_stop')
 Blockly.Blocks[MOTOR_BLOCK_TYPES.STOP] = {
     init: function() {
         this.appendDummyInput()
