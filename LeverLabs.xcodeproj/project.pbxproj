@@ -13,6 +13,9 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6FD4DC012EC3AEBC005D0361 /* LeverLabs */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFolders = (
+				Resources/Blockly,
+			);
 			path = LeverLabs;
 			sourceTree = "<group>";
 		};

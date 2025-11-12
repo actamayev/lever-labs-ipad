@@ -63,18 +63,15 @@ struct BlocklyWebViewWrapper: UIViewRepresentable {
     @Binding var coordinator: BlocklyWebViewWrapper.Coordinator?  // <- And this line
     
     func makeUIView(context: Context) -> WKWebView {
-        // Create the webview configuration
         let config = WKWebViewConfiguration()
         config.preferences.setValue(true, forKey: "allowFileAccessFromFileURLs")
-        
-        // Add message handler for JS -> Swift communication
         config.userContentController.add(context.coordinator, name: "codeGenerated")
         
         let webView = WKWebView(frame: .zero, configuration: config)
         context.coordinator.webView = webView
         
-        // Load the bundled HTML file
-        if let htmlURL = Bundle.main.url(forResource: "blockly", withExtension: "html") {
+        // Load Blockly HTML from bundle
+        if let htmlURL = Bundle.main.url(forResource: "Blockly/blockly", withExtension: "html") {
             webView.loadFileURL(htmlURL, allowingReadAccessTo: htmlURL.deletingLastPathComponent())
         }
         
